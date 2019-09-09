@@ -1,3 +1,4 @@
+'use strict';
 const itemDisplay = menu => {   // To display items for each day.
     console.log('\n\nMenu each day is');
     for(let i = 0; i < menu.length; i++) {
