@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Input Types</title>
+    </head>
+    <body>  
+        <div>
+            <label>
+                Enter text here
+                <input type='text' id="TextType" autofocus>
+            </label>
+            <p id="TextTypeDisplay"></p>
+        </div>
+        
+        <div>
+            <label>
+                Enter password here
+                <input type='password' id="PasswordType" required>
+            </label>
+            <p id="PasswordTypeDisplay"></p>
+        </div>   
+
+        <div>
+            <label>
+                Enter E-mail here
+                <input type='email' id="EmailType" required>
+            </label>
+            <p id="EmailTypeDisplay"></p>
+        </div>
+        
+        <div>
+            <input type='submit' onclick="storageHandler()">
+            <p id="SubmitCountDisplay">page load total:</p>
+        </div>
+        <!-- <button onclick="storageHandler()">
+            Submit
+        </button>    -->
+    </body>
+</html>
+
+<script src="./StorageHandler.js">
+</script> 
