@@ -46,6 +46,7 @@ const BookType = new GraphQLObjectType({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
         genre: { type: GraphQLString },
+        authorId: { type: GraphQLID },
         // Here were are creating a link from book to author
         author: {
             type: AuthorType,
