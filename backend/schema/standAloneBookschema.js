@@ -34,6 +34,7 @@ var authors = [
 // Defining a schema here of how a Book GraphQL object be like
 const BookType = new GraphQLObjectType({
     name: 'Book',
+    // Wrapping this inside a function becuase otherwise JS wont know what AuthorType is.
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
