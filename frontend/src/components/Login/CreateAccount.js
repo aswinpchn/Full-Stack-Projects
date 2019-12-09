@@ -122,7 +122,7 @@ class CreateAccount extends Component {
                 {this.redirectVar}
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-4 offset-md-4 mt-5 p-5 shadow">
+                        <div>
                             <h4>Create your grubhub account</h4>
                             <div class="row">
                                 <div class="form-group col-md-6">

@@ -95,7 +95,7 @@ class Login extends Component {
                 {this.redirectVar}
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-4 offset-md-4 mt-5 p-5 shadow">
+                        <div>
                             <h4>Signin with your grubhub simulation account</h4>
                             <div class="mt-3">
                                 <div class="form-group">
