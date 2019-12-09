@@ -32,7 +32,7 @@ class RestaurantLocationClass extends Component {
 			if(this.state.shouldUpdate) {
 					console.log(restaurantDetails);
 					for (index in restaurantDetails) {
-							if (restaurantDetails[index].id == localStorage.getItem("userId")) {
+							if (restaurantDetails[index].id === localStorage.getItem("userId")) {
 									restaurantName = restaurantDetails[index].restaurantInfo.name
 									restaurantCuisine = restaurantDetails[index].restaurantInfo.cuisine
 									this.setState({

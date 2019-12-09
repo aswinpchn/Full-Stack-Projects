@@ -146,7 +146,6 @@ class UserProfileClass extends Component {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
                 email: this.state.email,
-                lastname: this.state.lastname,
                 password: this.state.newPassword === "" ? this.state.password : passwordHash.generate(this.state.newPassword)
             }
             this.props.updateProfileMutation({

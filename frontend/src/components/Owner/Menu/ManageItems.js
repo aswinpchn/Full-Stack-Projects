@@ -32,7 +32,7 @@ class ManageItems extends Component {
         var AllSections = []
         let index
         for (index in allUsersData) {
-            if (allUsersData[index].id == localStorage.getItem("userId")) {
+            if (allUsersData[index].id === localStorage.getItem("userId")) {
                 AllSections = allUsersData[index].restaurantInfo.sections
             }
         }
@@ -41,7 +41,7 @@ class ManageItems extends Component {
         var Items = []
         var section, item
 
-        if (AllSections.length == 0) {
+        if (AllSections.length === 0) {
             Sections.push(
                 <div class="m-3 p-3 shadow">
                     <h3>Oops! There are no sections in your menu right now. <Link to="/owner/menu/manage-sections">Add here</Link></h3>
@@ -170,7 +170,7 @@ class AddItems extends Component {
     IsValueEmpty = (Value) => {
         if (Value == null)
             return true
-        if ("".localeCompare(Value.replace(/\s/g, "")) == 0) 
+        if ("".localeCompare(Value.replace(/\s/g, "")) === 0) 
             return true
         return false
     }

@@ -24,7 +24,7 @@ class ViewMenu extends Component {
 			var AllSections = []
 			let index
 			for (index in allUsersData) {
-					if (allUsersData[index].id == localStorage.getItem("userId")) {
+					if (allUsersData[index].id === localStorage.getItem("userId")) {
 							AllSections = allUsersData[index].restaurantInfo.sections
 					}
 			}
@@ -32,7 +32,7 @@ class ViewMenu extends Component {
 			var Sections = []
 			var Items = []
 			var section, item
-			if (AllSections.length == 0) {
+			if (AllSections.length === 0) {
 					Sections.push(
 							<div class="col-sm-12">
 									<h3>Oops! Looks like there are no sections present in your restaurant menu. <Link to="/owner/menu/manage-sections">Add here</Link></h3>
@@ -68,7 +68,7 @@ class ViewMenu extends Component {
 									)
 							}
 					}
-					if(Sections.length == 0) {
+					if(Sections.length === 0) {
 							Sections.push(
 									<div class="row p-3 mt-3 mb-3">
 											<div class="col-sm-12">

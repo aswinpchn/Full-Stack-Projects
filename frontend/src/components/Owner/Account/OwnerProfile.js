@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import '../../../App.css'
-import { Link } from 'react-router-dom'
 import passwordHash from 'password-hash'
 import { graphql, compose } from 'react-apollo'
 import { getProfile } from '../../../queries/queries'
