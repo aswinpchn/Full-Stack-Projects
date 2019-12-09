@@ -105,7 +105,7 @@ class CreateAccount extends Component {
                 lastname: "",
                 email: "",
                 password: "",
-                successMsg: "Account created, Reload once to instigate the changes.",
+                successMsg: "Account created, Reload once to instigate the changes. (Do reload at all places when you make a data change for the change to load.)",
                 isOwner: false,
             })
         }
