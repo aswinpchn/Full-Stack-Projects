@@ -1,6 +1,7 @@
 package edu.sjsu.cmpe275.aop.tweet;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class TweetServiceImpl implements TweetService {
 
@@ -11,11 +12,17 @@ public class TweetServiceImpl implements TweetService {
 
   @Override
   public void tweet(String user, String message) throws IllegalArgumentException, IOException {
+    Random r = new Random();
+    if(r.nextInt(100) > 50)
+      throw new IOException();
     System.out.printf("User %s tweeted message: %s\n", user, message);
   }
 
   @Override
   public void follow(String follower, String followee) throws IOException {
+    Random r = new Random();
+    if(r.nextInt(100) > 50)
+      throw new IOException();
     System.out.printf("User %s followed user %s \n", follower, followee);
   }
 

@@ -2,6 +2,7 @@ package edu.sjsu.cmpe275.aop.tweet.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,10 @@ public class StatsAspect {
 
   @Autowired TweetStatsServiceImpl stats;
 
-  @After("execution(public * edu.sjsu.cmpe275.aop.tweet.TweetService.*(..))")
+  @AfterReturning("execution(public * edu.sjsu.cmpe275.aop.tweet.TweetService.tweet(..))")
   public void dummyAfterAdvice(JoinPoint joinPoint) {
-    System.out.printf("After the executuion of the metohd %s\n", joinPoint.getSignature().getName());
+    System.out.printf("After the execution of the method %s in StatsAspect\n", joinPoint.getSignature().getName());
     //stats.resetStats();
-  }
-
-  @Before("execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.follow(..))")
-  public void dummyBeforeAdvice(JoinPoint joinPoint) {
-    System.out.printf("Before the executuion of the metohd %s\n", joinPoint.getSignature().getName());
   }
 
 }

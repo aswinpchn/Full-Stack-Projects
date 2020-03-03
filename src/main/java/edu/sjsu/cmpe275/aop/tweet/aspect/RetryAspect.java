@@ -1,9 +1,13 @@
 package edu.sjsu.cmpe275.aop.tweet.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;
 import org.aspectj.lang.annotation.Around;
+
+import java.io.IOException;
 
 @Aspect
 @Order(1)
@@ -14,19 +18,38 @@ public class RetryAspect {
    * @throws Throwable
    */
 
-  @Around("execution(public int edu.sjsu.cmpe275.aop.tweet.TweetService.*tweet(..))")
-  public int dummyAdviceOne(ProceedingJoinPoint joinPoint) throws Throwable {
-    System.out.printf("Prior to the executuion of the metohd %s\n", joinPoint.getSignature().getName());
-    Integer result = null;
-    try {
-      result = (Integer) joinPoint.proceed();
-      System.out.printf("Finished the executuion of the metohd %s with result %s\n", joinPoint.getSignature().getName(), result);
-    } catch (Throwable e) {
-      e.printStackTrace();
-      System.out.printf("Aborted the executuion of the metohd %s\n", joinPoint.getSignature().getName());
-      throw e;
+  private static int MAX_TRIES = 4;
+
+  @Around("execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.*(..))")
+  public void dummyAdviceOne(ProceedingJoinPoint joinPoint) throws IOException, IllegalArgumentException {
+    System.out.printf("Prior to the execution of the method %s in RetryAspect \n", joinPoint.getSignature().getName());
+
+    for (int i = 1; i <= MAX_TRIES; i++) {
+      try {
+        Object a = joinPoint.proceed();
+        System.out.println("Seems there is no Network error (IOException)");
+        break;
+      }
+      catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("  Throttled during try #" + i);
+        if(i == 4) {
+          System.out.printf("Aborted the executuion of the metohd %s in RetryAspect due to IOException 3 times.\n", joinPoint.getSignature().getName());
+          throw new IOException();
+        }
+      } catch (IllegalArgumentException e) {
+        e.printStackTrace();
+        break;
+      } catch(UnsupportedOperationException e) {
+        e.printStackTrace();
+        break;
+      } catch (Throwable throwable) {
+        throwable.printStackTrace();
+        break;
+      }
     }
-    return result.intValue();
+
+    System.out.printf("Finished the execution of the method %s in RetryAspect\n", joinPoint.getSignature().getName());
   }
 
 }
