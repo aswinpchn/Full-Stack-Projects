@@ -1,11 +1,15 @@
 package edu.sjsu.cmpe275.aop.tweet.aspect;
 
+import edu.sjsu.cmpe275.aop.tweet.TweetStatsServiceImpl;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 @Aspect
 @Order(2)
@@ -14,6 +18,9 @@ public class ValidationAspect {
    * Following is a dummy implementation of this aspect.
    * You are expected to provide an actual implementation based on the requirements, including adding/removing advices as needed.
    */
+
+  @Autowired
+  TweetStatsServiceImpl stats;
 
   @Before("execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.tweet(..))")
   public void dummyBeforeAdvice(JoinPoint joinPoint) throws IllegalArgumentException {
@@ -38,7 +45,7 @@ public class ValidationAspect {
   }
 
   @Before("execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.follow(..)) || execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.block(..))")
-  public void beforeFollow(JoinPoint joinPoint) throws IllegalArgumentException {
+  public void beforeFollow(JoinPoint joinPoint) throws IllegalArgumentException, UnsupportedOperationException {
     System.out.printf("Prior to the execution of method %s in Validation Aspect\n", joinPoint.getSignature().getName());
 
     try {
@@ -62,8 +69,8 @@ public class ValidationAspect {
     }
   }
 
-  @Before("execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.follow(..)))")
-  public void beforeUnBlock(JoinPoint joinPoint) throws IllegalArgumentException {
+  @Before("execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.unblock(..)))")
+  public void beforeUnBlock(JoinPoint joinPoint) throws IllegalArgumentException, UnsupportedOperationException {
     System.out.printf("Prior to the execution of method %s in Validation Aspect\n", joinPoint.getSignature().getName());
 
     try {
@@ -79,6 +86,19 @@ public class ValidationAspect {
 
       if(joinPoint.getArgs()[0].toString().equals(joinPoint.getArgs()[1].toString()))
         throw new UnsupportedOperationException();
+
+      String userToBeBlocked = joinPoint.getArgs()[0].toString();
+      String userWhoIsBlocking = joinPoint.getArgs()[1].toString();
+
+      if(stats.block.get(userWhoIsBlocking) == null) {
+        throw new UnsupportedOperationException();
+      } else {
+        if(stats.block.get(userWhoIsBlocking).contains(userToBeBlocked)) {
+
+        } else {
+          throw new UnsupportedOperationException();
+        }
+      }
 
     }catch(IllegalArgumentException e) {
       e.printStackTrace();

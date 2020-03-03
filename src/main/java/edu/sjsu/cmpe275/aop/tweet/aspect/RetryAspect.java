@@ -8,6 +8,7 @@ import org.springframework.core.annotation.Order;
 import org.aspectj.lang.annotation.Around;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 @Aspect
 @Order(1)
@@ -21,7 +22,8 @@ public class RetryAspect {
   private static int MAX_TRIES = 4;
 
   @Around("execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.*(..))")
-  public void dummyAdviceOne(ProceedingJoinPoint joinPoint) throws IOException, IllegalArgumentException {
+  public void dummyAdviceOne(ProceedingJoinPoint joinPoint)
+          throws IOException, IllegalArgumentException, UnsupportedOperationException {
     System.out.printf("Prior to the execution of the method %s in RetryAspect \n", joinPoint.getSignature().getName());
 
     for (int i = 1; i <= MAX_TRIES; i++) {
@@ -39,10 +41,10 @@ public class RetryAspect {
         }
       } catch (IllegalArgumentException e) {
         e.printStackTrace();
-        break;
+        throw new IllegalArgumentException();
       } catch(UnsupportedOperationException e) {
         e.printStackTrace();
-        break;
+        throw new UnsupportedEncodingException();
       } catch (Throwable throwable) {
         throwable.printStackTrace();
         break;

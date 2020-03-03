@@ -27,19 +27,20 @@ public class TweetServiceImpl implements TweetService {
   }
 
   @Override
-  public void block(String user, String follower) throws IOException {
-    Random r = new Random();
-    if(r.nextInt(100) > 50)
-      throw new IOException();
+  public void block(String user, String follower)
+          throws IllegalArgumentException, UnsupportedOperationException, IOException {
+//    Random r = new Random();
+//    if(r.nextInt(100) > 50)
+//      throw new IOException();
     System.out.printf("User %s blocked user %s \n", user, follower);
   }
 
   @Override
   public void unblock(String user, String follower)
           throws IllegalArgumentException, UnsupportedOperationException, IOException {
-    Random r = new Random();
-    if(r.nextInt(100) > 50)
-      throw new IOException();
+//    Random r = new Random();
+//    if(r.nextInt(100) > 50)
+//      throw new IOException();
     System.out.printf("User %s unblocked user %s \n", user, follower);
   }
 

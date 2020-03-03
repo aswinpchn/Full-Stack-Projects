@@ -17,6 +17,7 @@ public class App {
       tweeter.follow("bob", "alex");
       tweeter.tweet("alex", "first tweet");
       tweeter.block("alex", "bob");
+      tweeter.unblock("alex", "bob");
       tweeter.tweet("alex", "second tweet");
 
     } catch (Exception e) {

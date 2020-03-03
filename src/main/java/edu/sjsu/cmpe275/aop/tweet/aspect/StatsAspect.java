@@ -21,7 +21,8 @@ public class StatsAspect {
    * You are expected to provide an actual implementation based on the requirements, including adding/removing advices as needed.
    */
 
-  @Autowired TweetStatsServiceImpl stats;
+  @Autowired
+  TweetStatsServiceImpl stats;
 
   @AfterReturning("execution(public * edu.sjsu.cmpe275.aop.tweet.TweetService.tweet(..))")
   public void dummyAfterAdvice(JoinPoint joinPoint) {
@@ -42,6 +43,24 @@ public class StatsAspect {
       stats.block.put(userWhoIsBlocking, temp);
     } else {
       stats.block.get(userWhoIsBlocking).add(userToBeBlocked);
+    }
+  }
+
+  @AfterReturning("execution(public * edu.sjsu.cmpe275.aop.tweet.TweetService.unblock(..))")
+  public void unblockAdvice(JoinPoint joinPoint) {
+    System.out.printf("After the execution of the method %s in StatsAspect\n", joinPoint.getSignature().getName());
+
+    String userToBeBlocked = joinPoint.getArgs()[0].toString();
+    String userWhoIsBlocking = joinPoint.getArgs()[1].toString();
+
+    if(stats.block.get(userWhoIsBlocking) == null) {
+
+    } else {
+      if(stats.block.get(userWhoIsBlocking).contains(userToBeBlocked)) {
+        stats.block.get(userWhoIsBlocking).remove(userToBeBlocked);
+      } else {
+        throw new UnsupportedOperationException();
+      }
     }
   }
 
