@@ -39,7 +39,8 @@ public interface TweetService {
    * @throws UnsupportedOperationException if attempts to block himself.
    * @throws IOException                   if there is a network failure
    */
-  void block(String user, String followee) throws IOException, UnsupportedOperationException, IOException;
+  void block(String user, String followee)
+          throws IllegalArgumentException, UnsupportedOperationException, IOException;
 
   /**
    * This method undoes previous blocks.
