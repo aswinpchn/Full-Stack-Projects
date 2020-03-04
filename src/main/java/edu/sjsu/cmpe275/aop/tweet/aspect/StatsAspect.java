@@ -64,4 +64,20 @@ public class StatsAspect {
     }
   }
 
+  @AfterReturning("execution(public * edu.sjsu.cmpe275.aop.tweet.TweetService.follow(..))")
+  public void followAdvice(JoinPoint joinPoint) {
+    System.out.printf("After the execution of the method %s in StatsAspect\n", joinPoint.getSignature().getName());
+
+    String follower = joinPoint.getArgs()[0].toString();
+    String followee = joinPoint.getArgs()[1].toString();
+
+    if(stats.follow.get(followee) == null) {
+      Set<String> temp = new HashSet<String>();
+      temp.add(follower);
+      stats.follow.put(followee, temp);
+    } else {
+      stats.follow.get(followee).add(follower);
+    }
+  }
+
 }

@@ -15,9 +15,18 @@ public class App {
 
     try {
       tweeter.follow("bob", "alex");
+      System.out.println("------------------------");
+      tweeter.follow("bob", "ali");
+      System.out.println("------------------------");
+      tweeter.follow("aswin", "ali");
+      System.out.println("------------------------");
       tweeter.tweet("alex", "first tweet");
       tweeter.block("alex", "bob");
+      System.out.println("------------------------");
       tweeter.unblock("alex", "bob");
+      System.out.println("------------------------");
+      tweeter.unblock("alex", "bob");
+      System.out.println("------------------------");
       tweeter.tweet("alex", "second tweet");
 
     } catch (Exception e) {

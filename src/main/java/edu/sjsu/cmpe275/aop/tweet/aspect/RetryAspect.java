@@ -41,11 +41,14 @@ public class RetryAspect {
         }
       } catch (IllegalArgumentException e) {
         e.printStackTrace();
+        System.out.printf("Finished the execution of the method %s in RetryAspect with IllegalArgumentException\n", joinPoint.getSignature().getName());
         throw new IllegalArgumentException();
       } catch(UnsupportedOperationException e) {
         e.printStackTrace();
+        System.out.printf("Finished the execution of the method %s in RetryAspect with UnsupportedOperationException\n", joinPoint.getSignature().getName());
         throw new UnsupportedEncodingException();
       } catch (Throwable throwable) {
+        System.out.println("---------------- Came into throwable -------------------");
         throwable.printStackTrace();
         break;
       }

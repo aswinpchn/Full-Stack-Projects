@@ -44,8 +44,8 @@ public class ValidationAspect {
     }
   }
 
-  @Before("execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.follow(..)) || execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.block(..))")
-  public void beforeFollow(JoinPoint joinPoint) throws IllegalArgumentException, UnsupportedOperationException {
+  @Before("execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.block(..))")
+  public void beforeBlock(JoinPoint joinPoint) throws IllegalArgumentException, UnsupportedOperationException {
     System.out.printf("Prior to the execution of method %s in Validation Aspect\n", joinPoint.getSignature().getName());
 
     try {
@@ -56,13 +56,14 @@ public class ValidationAspect {
       if(joinPoint.getArgs()[1] == null || joinPoint.getArgs()[1].toString().length() == 0)
         throw new IllegalArgumentException();
 
-      if(joinPoint.getArgs()[1] == null || joinPoint.getArgs()[1].toString().length() > 140)
-        throw new IllegalArgumentException();
-
       if(joinPoint.getArgs()[0].toString().equals(joinPoint.getArgs()[1].toString()))
         throw new UnsupportedOperationException();
 
     }catch(IllegalArgumentException e) {
+      e.printStackTrace();
+      System.out.printf("Aborted the executuion of the method %s in validationAspect\n", joinPoint.getSignature().getName());
+      throw e;
+    } catch(UnsupportedOperationException e) {
       e.printStackTrace();
       System.out.printf("Aborted the executuion of the method %s in validationAspect\n", joinPoint.getSignature().getName());
       throw e;
@@ -79,9 +80,6 @@ public class ValidationAspect {
         throw new IllegalArgumentException();
 
       if(joinPoint.getArgs()[1] == null || joinPoint.getArgs()[1].toString().length() == 0)
-        throw new IllegalArgumentException();
-
-      if(joinPoint.getArgs()[1] == null || joinPoint.getArgs()[1].toString().length() > 140)
         throw new IllegalArgumentException();
 
       if(joinPoint.getArgs()[0].toString().equals(joinPoint.getArgs()[1].toString()))
@@ -101,6 +99,36 @@ public class ValidationAspect {
       }
 
     }catch(IllegalArgumentException e) {
+      e.printStackTrace();
+      System.out.printf("Aborted the execution of the method %s in validationAspect\n", joinPoint.getSignature().getName());
+      throw e;
+    } catch(UnsupportedOperationException e) {
+      e.printStackTrace();
+      System.out.printf("Aborted the execution of the method %s in validationAspect\n", joinPoint.getSignature().getName());
+      throw e;
+    }
+  }
+
+  @Before("execution(public void edu.sjsu.cmpe275.aop.tweet.TweetService.follow(..))")
+  public void beforeFollow(JoinPoint joinPoint) throws IllegalArgumentException, UnsupportedOperationException {
+    System.out.printf("Prior to the execution of method %s in Validation Aspect\n", joinPoint.getSignature().getName());
+
+    try {
+
+      if(joinPoint.getArgs()[0] == null || joinPoint.getArgs()[0].toString().length() == 0)
+        throw new IllegalArgumentException();
+
+      if(joinPoint.getArgs()[1] == null || joinPoint.getArgs()[1].toString().length() == 0)
+        throw new IllegalArgumentException();
+
+      if(joinPoint.getArgs()[0].toString().equals(joinPoint.getArgs()[1].toString()))
+        throw new UnsupportedOperationException();
+
+    }catch(IllegalArgumentException e) {
+      e.printStackTrace();
+      System.out.printf("Aborted the executuion of the method %s in validationAspect\n", joinPoint.getSignature().getName());
+      throw e;
+    } catch(UnsupportedOperationException e) {
       e.printStackTrace();
       System.out.printf("Aborted the executuion of the method %s in validationAspect\n", joinPoint.getSignature().getName());
       throw e;
