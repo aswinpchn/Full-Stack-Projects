@@ -20,15 +20,15 @@ public class App {
       System.out.println("------------------------");
       tweeter.follow("aswin", "ali");
       System.out.println("------------------------");
-      tweeter.tweet("alex", "first tweet");
+      tweeter.follow("alex", "bob");
+      System.out.println("------------------------");
+      tweeter.tweet("bob", "first tweet");
       tweeter.block("alex", "bob");
       System.out.println("------------------------");
-      tweeter.unblock("alex", "bob");
-      System.out.println("------------------------");
-      tweeter.unblock("alex", "bob");
-      System.out.println("------------------------");
-      tweeter.tweet("alex", "second tweet");
-
+//      tweeter.unblock("alex", "bob");
+//      System.out.println("------------------------");
+      tweeter.tweet("bob", "second tweet");
+      tweeter.tweet("bob", "third tweet");
     } catch (Exception e) {
       e.printStackTrace();
     }

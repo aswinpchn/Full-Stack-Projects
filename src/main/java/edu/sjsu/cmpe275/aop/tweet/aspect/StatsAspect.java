@@ -10,7 +10,9 @@ import org.springframework.core.annotation.Order;
 
 import edu.sjsu.cmpe275.aop.tweet.TweetStatsServiceImpl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Aspect
@@ -25,9 +27,60 @@ public class StatsAspect {
   TweetStatsServiceImpl stats;
 
   @AfterReturning("execution(public * edu.sjsu.cmpe275.aop.tweet.TweetService.tweet(..))")
-  public void dummyAfterAdvice(JoinPoint joinPoint) {
+  public void tweetAdvice(JoinPoint joinPoint) {
     System.out.printf("After the execution of the method %s in StatsAspect\n", joinPoint.getSignature().getName());
-    //stats.resetStats();
+
+    String tweeter = joinPoint.getArgs()[0].toString();
+    String message = joinPoint.getArgs()[1].toString();
+    String reach = new String();
+
+    if(stats.follow.containsKey(tweeter)) {
+      Set<String> followers = stats.follow.get(tweeter);
+      List<String> reachList = new ArrayList<String>();
+      if(followers.size() == 0) {
+        reach = "0";
+      } else {
+        for(String s: followers) {
+          if(stats.block.get(tweeter) != null) {
+            if(stats.block.get(tweeter).contains(s)) {
+
+            } else {
+              reachList.add(s);
+            }
+          } else {
+            reachList.add(s);
+          }
+        }
+
+        reach = String.valueOf(reachList.size());
+      }
+    } else {
+      reach = "0";
+    }
+
+    List<String> temp = new ArrayList<String>();
+    temp.add(tweeter);
+    temp.add(message);
+    temp.add(reach);
+    stats.tweet.add(temp);
+
+    Set<String> followers = stats.follow.get(tweeter);
+    for(String s: followers) {
+      if(stats.block.get(tweeter) != null) {
+        if(stats.block.get(tweeter).contains(s)) {
+          if(stats.missed.containsKey(s)) {
+            stats.missed.put(s, stats.missed.get(s) + 1);
+          } else {
+            stats.missed.put(s, 1);
+          }
+        } else {
+
+        }
+      } else {
+
+      }
+    }
+
   }
 
   @AfterReturning("execution(public * edu.sjsu.cmpe275.aop.tweet.TweetService.block(..))")

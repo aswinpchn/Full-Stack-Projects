@@ -12,13 +12,13 @@ public class TweetStatsServiceImpl implements TweetStatsService {
   public Map<String, Set<String>> follow;
   public Map<String, Set<String>> block;
   public List<List<String>> tweet;
-  public Map<String, String> missed;
+  public Map<String, Integer> missed;
 
   public TweetStatsServiceImpl() {
     follow = new HashMap<String, Set<String>>();
     block = new HashMap<String, Set<String>>();
     tweet = new ArrayList<List<String>>();
-    missed = new HashMap<String, String>();
+    missed = new HashMap<String, Integer>();
   }
 
   @Override
