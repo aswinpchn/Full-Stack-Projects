@@ -30,6 +30,9 @@ public class App {
       tweeter.unblock("alex", "bob");
       System.out.println("------------------------");
       tweeter.tweet("bob", "third tweet");
+      System.out.println("------------------------");
+      tweeter.tweet("bob", "third tweet");
+      System.out.println("------------------------");
     } catch (Exception e) {
       e.printStackTrace();
     }

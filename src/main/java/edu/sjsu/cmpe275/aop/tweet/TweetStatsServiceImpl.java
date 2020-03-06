@@ -68,8 +68,36 @@ public class TweetStatsServiceImpl implements TweetStatsService {
 
   @Override
   public String getMostPopularMessage() {
-    // TODO Auto-generated method stub
-    return null;
+
+    if(tweet.size() == 0)
+      return null;
+
+    Map<String, Integer> map = new HashMap<String, Integer>();
+
+    for(List<String> l: tweet) {
+      if(map.get(l.get(0)) == null) {
+        map.put(l.get(0), Integer.parseInt(l.get(2)));
+      } else {
+        map.put(l.get(0), map.get(l.get(0)) + Integer.parseInt(l.get(2)));
+      }
+    }
+
+    int highestReachCount = Integer.MIN_VALUE;
+    String highestReachTweet = null;
+
+    for(String s: map.keySet()) {
+      if(map.get(s) > highestReachCount) {
+        highestReachCount = map.get(s);
+        highestReachTweet = s;
+      } else if(map.get(s) == highestReachCount) {
+        if(s.compareTo(highestReachTweet) < 0) {
+          highestReachTweet = s;
+        }
+      } else {
+
+      }
+    }
+    return highestReachTweet;
   }
 
   @Override
