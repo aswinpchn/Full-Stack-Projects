@@ -32,13 +32,12 @@ public class StatsAspect {
 
     String tweeter = joinPoint.getArgs()[0].toString();
     String message = joinPoint.getArgs()[1].toString();
-    String reach = new String();
+    Set<String> reachList = new HashSet<String>();
 
     if(stats.follow.containsKey(tweeter)) {
       Set<String> followers = stats.follow.get(tweeter);
-      List<String> reachList = new ArrayList<String>();
       if(followers.size() == 0) {
-        reach = "0";
+
       } else {
         for(String s: followers) {
           if(stats.block.get(tweeter) != null) {
@@ -51,17 +50,15 @@ public class StatsAspect {
             reachList.add(s);
           }
         }
-
-        reach = String.valueOf(reachList.size());
       }
     } else {
-      reach = "0";
+
     }
 
-    List<String> temp = new ArrayList<String>();
+    List<Object> temp = new ArrayList<Object>();
     temp.add(message);
     temp.add(tweeter);
-    temp.add(reach);
+    temp.add(reachList);
     stats.tweet.add(temp);
 
     Set<String> followers = stats.follow.get(tweeter);
