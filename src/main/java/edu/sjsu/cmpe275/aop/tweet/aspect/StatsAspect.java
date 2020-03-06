@@ -59,8 +59,8 @@ public class StatsAspect {
     }
 
     List<String> temp = new ArrayList<String>();
-    temp.add(tweeter);
     temp.add(message);
+    temp.add(tweeter);
     temp.add(reach);
     stats.tweet.add(temp);
 

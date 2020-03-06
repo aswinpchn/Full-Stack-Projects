@@ -29,14 +29,41 @@ public class TweetStatsServiceImpl implements TweetStatsService {
 
   @Override
   public int getLengthOfLongestTweet() {
-    // TODO Auto-generated method stub
-    return 0;
+
+    int maxLength = Integer.MIN_VALUE;
+    for(int i = 0; i < tweet.size(); i++) {
+      maxLength = Math.max(maxLength, tweet.get(i).get(0).length());
+    }
+
+    if(maxLength < 0)
+      return 0;
+    else
+      return maxLength;
   }
 
   @Override
   public String getMostFollowedUser() {
-    // TODO Auto-generated method stub
-    return null;
+
+    if(follow.size() == 0)
+      return null;
+
+    int maxFollowing = Integer.MIN_VALUE;
+    String mostFollowed = null;
+
+    for(String s: follow.keySet()) {
+      if(follow.get(s).size() > maxFollowing) {
+        maxFollowing = follow.get(s).size();
+        mostFollowed = s;
+      } else if(follow.get(s).size() == maxFollowing) {
+        if(s.compareTo(mostFollowed) < 0) {
+          mostFollowed = s;
+        }
+      } else {
+
+      }
+    }
+
+    return mostFollowed;
   }
 
   @Override
