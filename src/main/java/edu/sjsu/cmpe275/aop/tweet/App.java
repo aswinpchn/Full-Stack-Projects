@@ -22,6 +22,8 @@ public class App {
       System.out.println("------------------------");
       tweeter.follow("alex", "bob");
       System.out.println("------------------------");
+      tweeter.follow("aswin", "bob");
+      System.out.println("------------------------");
       tweeter.tweet("bob", "first tweet");
       tweeter.block("alex", "bob");
       System.out.println("------------------------");

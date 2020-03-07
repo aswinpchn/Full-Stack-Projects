@@ -11,14 +11,17 @@ public class TweetStatsServiceImpl implements TweetStatsService {
 
   public Map<String, Set<String>> follow;
   public Map<String, Set<String>> block;
-  public List<List<String>> tweet;
+  public Map<String, Set<String>> tweet;
   public Map<String, Integer> missed;
+  public Map<String, Integer> activity;
+
 
   public TweetStatsServiceImpl() {
     follow = new HashMap<String, Set<String>>();
     block = new HashMap<String, Set<String>>();
-    tweet = new ArrayList<List<String>>();
+    tweet = new HashMap<String, Set<String>>();
     missed = new HashMap<String, Integer>();
+    activity = new HashMap<String, Integer>();
   }
 
   @Override
@@ -31,8 +34,9 @@ public class TweetStatsServiceImpl implements TweetStatsService {
   public int getLengthOfLongestTweet() {
 
     int maxLength = Integer.MIN_VALUE;
-    for(int i = 0; i < tweet.size(); i++) {
-      maxLength = Math.max(maxLength, tweet.get(i).get(0).length());
+
+    for(String s: tweet.keySet()) {
+      maxLength = Math.max(maxLength, s.length());
     }
 
     if(maxLength < 0)
@@ -72,32 +76,23 @@ public class TweetStatsServiceImpl implements TweetStatsService {
     if(tweet.size() == 0)
       return null;
 
-    Map<String, Integer> map = new HashMap<String, Integer>();
+    int popularMessageReach = Integer.MIN_VALUE;
+    String popularMessage = null;
 
-    for(List<String> l: tweet) {
-      if(map.get(l.get(0)) == null) {
-        map.put(l.get(0), Integer.parseInt(l.get(2)));
-      } else {
-        map.put(l.get(0), map.get(l.get(0)) + Integer.parseInt(l.get(2)));
-      }
-    }
-
-    int highestReachCount = Integer.MIN_VALUE;
-    String highestReachTweet = null;
-
-    for(String s: map.keySet()) {
-      if(map.get(s) > highestReachCount) {
-        highestReachCount = map.get(s);
-        highestReachTweet = s;
-      } else if(map.get(s) == highestReachCount) {
-        if(s.compareTo(highestReachTweet) < 0) {
-          highestReachTweet = s;
+    for(String s: tweet.keySet()) {
+      if(tweet.get(s).size() > popularMessageReach) {
+        popularMessageReach = tweet.get(s).size();
+        popularMessage = s;
+      } else if(tweet.get(s).size() == popularMessageReach) {
+        if(s.compareTo(popularMessage) < 0) {
+          popularMessage = s;
         }
       } else {
 
       }
     }
-    return highestReachTweet;
+
+    return popularMessage;
   }
 
   @Override

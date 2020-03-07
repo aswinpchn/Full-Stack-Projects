@@ -55,11 +55,11 @@ public class StatsAspect {
 
     }
 
-    List<Object> temp = new ArrayList<Object>();
-    temp.add(message);
-    temp.add(tweeter);
-    temp.add(reachList);
-    stats.tweet.add(temp);
+    if(stats.tweet.containsKey(message)) {
+      stats.tweet.get(message).addAll(reachList);
+    } else {
+      stats.tweet.put(message, reachList);
+    }
 
     Set<String> followers = stats.follow.get(tweeter);
     for(String s: followers) {
@@ -76,6 +76,12 @@ public class StatsAspect {
       } else {
 
       }
+    }
+
+    if(stats.activity.containsKey(tweeter)) {
+      stats.activity.put(tweeter, stats.activity.get(tweeter) + message.length());
+    } else {
+      stats.activity.put(tweeter, message.length());
     }
 
   }
