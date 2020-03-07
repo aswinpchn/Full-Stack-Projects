@@ -114,6 +114,8 @@ public class StatsAspect {
     } else {
       if(stats.block.get(userWhoIsBlocking).contains(userToBeBlocked)) {
         stats.block.get(userWhoIsBlocking).remove(userToBeBlocked);
+        if(stats.block.get(userWhoIsBlocking).size() == 0)
+          stats.block.remove(userWhoIsBlocking);
       } else {
         throw new UnsupportedOperationException();
       }

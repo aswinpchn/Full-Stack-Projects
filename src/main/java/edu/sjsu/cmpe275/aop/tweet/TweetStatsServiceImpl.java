@@ -97,20 +97,93 @@ public class TweetStatsServiceImpl implements TweetStatsService {
 
   @Override
   public String getMostProductiveUser() {
-    // TODO Auto-generated method stub
-    return null;
+
+    if(activity.size() == 0)
+      return null;
+
+    int mostProductiveUserLength = Integer.MIN_VALUE;
+    String mostProductiveUser = null;
+
+    for(String s: activity.keySet()) {
+      if(activity.get(s) > mostProductiveUserLength) {
+        mostProductiveUserLength = activity.get(s);
+        mostProductiveUser = s;
+      } else if(activity.get(s) == mostProductiveUserLength) {
+        if(s.compareTo(mostProductiveUser) < 0)
+          mostProductiveUser = s;
+      } else {
+
+      }
+    }
+
+    return mostProductiveUser;
   }
 
   @Override
   public String getMostBlockedFollowerByNumberOfMissedTweets() {
-    // TODO Auto-generated method stub
-    return null;
+
+    if(block.size() == 0)
+      return null;
+
+    int mostBlockedFollowerByNumberOfMissedTweetsCount = Integer.MIN_VALUE;
+    String mostBlockedFollowerByNumberOfMissedTweets = null;
+
+    for(String s: missed.keySet()) {
+      if(missed.get(s) > mostBlockedFollowerByNumberOfMissedTweetsCount) {
+        mostBlockedFollowerByNumberOfMissedTweets = s;
+        mostBlockedFollowerByNumberOfMissedTweetsCount = missed.get(s);
+      } else if(missed.get(s) == mostBlockedFollowerByNumberOfMissedTweetsCount) {
+        if(s.compareTo(mostBlockedFollowerByNumberOfMissedTweets) < 0)
+          mostBlockedFollowerByNumberOfMissedTweets = s;
+      } else {
+
+      }
+    }
+
+    return mostBlockedFollowerByNumberOfMissedTweets;
   }
 
   @Override
   public String getMostBlockedFollowerByNumberOfFollowees() {
-    // TODO Auto-generated method stub
-    return null;
+
+    if(block.size() == 0)
+      return null;
+
+    int mostBlockedFollowerByNumberOfFolloweesCount = Integer.MIN_VALUE;
+    String mostBlockedFollowerByNumberOfFollowees = null;
+
+    Map<String, Integer> map = new HashMap<String, Integer>();
+
+    for(String followee : follow.keySet()) {
+      for(String follower : follow.get(followee)) {
+        if(block.containsKey(followee)) {
+          if(block.get(followee).contains(follower)) {
+            if(map.containsKey(follower)) {
+              map.put(follower, map.get(follower) + 1);
+            } else {
+              map.put(follower, 1);
+            }
+          } else {
+
+          }
+        } else {
+
+        }
+      }
+    }
+
+    for(String s: map.keySet()) {
+      if(map.get(s) > mostBlockedFollowerByNumberOfFolloweesCount) {
+        mostBlockedFollowerByNumberOfFollowees = s;
+        mostBlockedFollowerByNumberOfFolloweesCount = map.get(s);
+      } else if(map.get(s) == mostBlockedFollowerByNumberOfFolloweesCount) {
+        if(s.compareTo(mostBlockedFollowerByNumberOfFollowees) < 0)
+          mostBlockedFollowerByNumberOfFollowees = s;
+      } else {
+
+      }
+    }
+    return mostBlockedFollowerByNumberOfFollowees;
   }
 }
 

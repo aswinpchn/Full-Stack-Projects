@@ -18,19 +18,26 @@ public class App {
       System.out.println("------------------------");
       tweeter.follow("bob", "ali");
       System.out.println("------------------------");
+      tweeter.block("bob", "alex");
+      System.out.println("------------------------");
+      tweeter.block("bob", "ali");
+      System.out.println("------------------------");
       tweeter.follow("aswin", "ali");
       System.out.println("------------------------");
       tweeter.follow("alex", "bob");
       System.out.println("------------------------");
-      tweeter.follow("aswin", "bob");
+      tweeter.follow("ain", "bob");
       System.out.println("------------------------");
       tweeter.tweet("bob", "first tweet");
+      System.out.println("------------------------");
       tweeter.block("alex", "bob");
+      System.out.println("------------------------");
+      tweeter.block("ain", "bob");
       System.out.println("------------------------");
       tweeter.tweet("bob", "second tweet");
       System.out.println("------------------------");
-      tweeter.unblock("alex", "bob");
-      System.out.println("------------------------");
+//      tweeter.unblock("alex", "bob");
+//      System.out.println("------------------------");
       tweeter.tweet("bob", "third tweet");
       System.out.println("------------------------");
       tweeter.tweet("bob", "third tweet");
@@ -43,6 +50,8 @@ public class App {
     System.out.println("Most popular user: " + stats.getMostFollowedUser());
     System.out.println("Length of the longest tweet: " + stats.getLengthOfLongestTweet());
     System.out.println("Most popular message: " + stats.getMostPopularMessage());
+    System.out.println("getMostBlockedFollowerByNumberOfMissedTweets: " + stats.getMostBlockedFollowerByNumberOfMissedTweets());
+    System.out.println("getMostBlockedFollowerByNumberOfFollowees: " + stats.getMostBlockedFollowerByNumberOfFollowees());
     ctx.close();
   }
 }
