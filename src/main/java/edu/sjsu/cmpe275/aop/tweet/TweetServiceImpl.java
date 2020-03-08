@@ -10,6 +10,9 @@ public class TweetServiceImpl implements TweetService {
    * You can tweak the implementation to suit your need, but this file is NOT part of the submission.
    */
 
+  // This is the actual place where business logic will generally happen, Here is the place where fantasy IOException can occur.
+  // If no error happens here, it goes to AfterReturning in StatsAspect. if IOException is thrown, this goes directly to Retry.
+
   @Override
   public void tweet(String user, String message) throws IllegalArgumentException, IOException {
     Random r = new Random();

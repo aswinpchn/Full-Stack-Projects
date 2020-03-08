@@ -16,12 +16,14 @@ import java.util.List;
 import java.util.Set;
 
 @Aspect
-@Order(0)
+@Order(0)  // Order means in what order aspect will be processed if more than one aspect applied to the same join point        https://howtodoinjava.com/spring-aop/spring-aop-specifying-aspects-ordering/
 public class StatsAspect {
   /***
    * Following is a dummy implementation of this aspect.
    * You are expected to provide an actual implementation based on the requirements, including adding/removing advices as needed.
    */
+
+  // AfterReturning will happen after TweetServiceImpl is executed. There is another variation of After, called AfterThrowing which will run if any error is thrown.
 
   @Autowired
   TweetStatsServiceImpl stats;

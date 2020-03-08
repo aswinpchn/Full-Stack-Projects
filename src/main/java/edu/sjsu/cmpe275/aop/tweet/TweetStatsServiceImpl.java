@@ -15,6 +15,19 @@ public class TweetStatsServiceImpl implements TweetStatsService {
   public Map<String, Integer> missed;
   public Map<String, Integer> activity;
 
+  /*
+
+  follow will store <k:v> -> <followee, set<followers>>
+  block will store <k:v> -> <blocker, set<blockees>>
+  tweet will store <k:v> -> <tweet content, set<reach>> [This reach contains followers of the tweeter, if not blocked.] [If two tweet's contents are same we do set add -> We are doing this because got get popular message's requirement]
+  missed will store <k:v> -> <follower, missed tweet count> [A tweet is considered as missed by a follower if he is following the tweeter and is also blocked.]
+  activity will store <k,v> -> <tweeter, total message length>
+
+  All these data storage model are decided after long and extensive analysis. This works and is final...
+
+  Note: A tweeter's message will reach a follower, if he is not blocked.
+
+   */
 
   public TweetStatsServiceImpl() {
     follow = new HashMap<String, Set<String>>();

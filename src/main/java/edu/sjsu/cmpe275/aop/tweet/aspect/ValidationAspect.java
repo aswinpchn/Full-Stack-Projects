@@ -7,17 +7,16 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 @Aspect
-@Order(2)
+@Order(2) // Order means in what order aspect will be processed if more than one aspect applied to the same join point        https://howtodoinjava.com/spring-aop/spring-aop-specifying-aspects-ordering/
 public class ValidationAspect {
   /***
    * Following is a dummy implementation of this aspect.
    * You are expected to provide an actual implementation based on the requirements, including adding/removing advices as needed.
    */
+
+  // The before advices will happen before the actual method, we do all validation things here and if any error is thrown here, we have written that in Retry aspect to catch that.
 
   @Autowired
   TweetStatsServiceImpl stats;

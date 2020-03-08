@@ -21,7 +21,7 @@
    https://stackoverflow.com/questions/7414794/difference-between-contextannotation-config-and-contextcomponent-scan -->
 
   <!--  Enable Spring AOP with AspectJ -->
-  <!--  Even Spring AOP has to use AspectJ's packages only.-->
+  <!--  Even Spring AOP has to use AspectJ's packages only internally.-->
   <aop:aspectj-autoproxy />
 
 
