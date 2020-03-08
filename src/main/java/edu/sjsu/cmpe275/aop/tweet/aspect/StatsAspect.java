@@ -62,19 +62,21 @@ public class StatsAspect {
     }
 
     Set<String> followers = stats.follow.get(tweeter);
-    for(String s: followers) {
-      if(stats.block.get(tweeter) != null) {
-        if(stats.block.get(tweeter).contains(s)) {
-          if(stats.missed.containsKey(s)) {
-            stats.missed.put(s, stats.missed.get(s) + 1);
+    if(followers != null) {
+      for(String s: followers) {
+        if(stats.block.get(tweeter) != null) {
+          if(stats.block.get(tweeter).contains(s)) {
+            if(stats.missed.containsKey(s)) {
+              stats.missed.put(s, stats.missed.get(s) + 1);
+            } else {
+              stats.missed.put(s, 1);
+            }
           } else {
-            stats.missed.put(s, 1);
+
           }
         } else {
 
         }
-      } else {
-
       }
     }
 

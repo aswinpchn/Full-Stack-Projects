@@ -14,6 +14,9 @@ public class App {
     TweetStatsService stats = (TweetStatsService) ctx.getBean("tweetStatsService");
 
     try {
+
+      /*
+
       tweeter.follow("bob", "alex");
       System.out.println("------------------------");
       tweeter.follow("bob", "ali");
@@ -42,6 +45,58 @@ public class App {
       System.out.println("------------------------");
       tweeter.tweet("bob", "third tweet");
       System.out.println("------------------------");
+
+       */
+
+      tweeter.follow("Carol", "Alex");
+      tweeter.follow("Carol", "Bob");
+      tweeter.follow("Daisy", "Bob");
+
+      tweeter.tweet("Alex", "AlexHello");
+      tweeter.tweet("Bob", "BobHello");
+      tweeter.tweet("Alex", "Hello");
+      tweeter.tweet("Bob", "  Hello  ");
+
+      tweeter.block("Bob", "Carol");
+      tweeter.tweet("Alex", "AlexMessage");
+      tweeter.tweet("Bob", "BobMessage");
+      tweeter.follow("X", "A");
+      tweeter.follow("Y", "A");
+      tweeter.follow("Z", "A");
+      tweeter.tweet("A", "A Tweet");
+
+      tweeter.unblock("Bob", "Carol");
+      tweeter.tweet("Bob", "Bob After Unblocking");
+
+      tweeter.tweet("  A  ", "Hello");
+
+      tweeter.tweet(" A ", "hello");
+
+      stats.resetStatsAndSystem();
+      tweeter.follow("Carol", "Alex");
+      tweeter.follow("Carol", "Bob");
+      tweeter.follow("Daisy", "Bob");
+
+      tweeter.tweet("Alex", "AlexHello");
+      tweeter.tweet("Bob", "BobHello");
+      tweeter.tweet("Alex", "Hello");
+      tweeter.tweet("Bob", "  Hello  ");
+
+      tweeter.block("Carol", "Bob");
+      tweeter.tweet("Alex", "AlexMessage");
+      tweeter.tweet("Bob", "BobMessage");
+      tweeter.follow("X", "A");
+      tweeter.follow("Y", "A");
+      tweeter.follow("Z", "A");
+      tweeter.tweet("A", "A Tweet");
+
+      tweeter.unblock("Carol", "Bob");
+      tweeter.tweet("Bob", "Bob After Unblocking");
+
+      tweeter.tweet("  A  ", "Hello");
+
+      tweeter.tweet(" A ", "hello");
+      tweeter.block("Carol", "Bob");
     } catch (Exception e) {
       e.printStackTrace();
     }

@@ -27,7 +27,11 @@ public class TweetStatsServiceImpl implements TweetStatsService {
   @Override
   public void resetStatsAndSystem() {
     // TODO Auto-generated method stub
-
+    follow = new HashMap<String, Set<String>>();
+    block = new HashMap<String, Set<String>>();
+    tweet = new HashMap<String, Set<String>>();
+    missed = new HashMap<String, Integer>();
+    activity = new HashMap<String, Integer>();
   }
 
   @Override
@@ -122,7 +126,7 @@ public class TweetStatsServiceImpl implements TweetStatsService {
   @Override
   public String getMostBlockedFollowerByNumberOfMissedTweets() {
 
-    if(block.size() == 0)
+    if(missed.size() == 0)
       return null;
 
     int mostBlockedFollowerByNumberOfMissedTweetsCount = Integer.MIN_VALUE;
@@ -146,7 +150,7 @@ public class TweetStatsServiceImpl implements TweetStatsService {
   @Override
   public String getMostBlockedFollowerByNumberOfFollowees() {
 
-    if(block.size() == 0)
+    if(block.size() == 0 || follow.size() == 0)
       return null;
 
     int mostBlockedFollowerByNumberOfFolloweesCount = Integer.MIN_VALUE;
