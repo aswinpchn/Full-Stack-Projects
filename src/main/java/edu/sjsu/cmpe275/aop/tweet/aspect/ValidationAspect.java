@@ -84,8 +84,8 @@ public class ValidationAspect {
       if(joinPoint.getArgs()[0].toString().equals(joinPoint.getArgs()[1].toString()))
         throw new UnsupportedOperationException();
 
-      String userToBeBlocked = joinPoint.getArgs()[0].toString();
-      String userWhoIsBlocking = joinPoint.getArgs()[1].toString();
+      String userToBeBlocked = joinPoint.getArgs()[1].toString();
+      String userWhoIsBlocking = joinPoint.getArgs()[0].toString();
 
       if(stats.block.get(userWhoIsBlocking) == null) {
         throw new UnsupportedOperationException();

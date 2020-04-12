@@ -48,55 +48,118 @@ public class App {
 
        */
 
-      tweeter.follow("Carol", "Alex");
-      tweeter.follow("Carol", "Bob");
-      tweeter.follow("Daisy", "Bob");
+//      tweeter.follow("Carol", "Alex");
+////      tweeter.follow("Carol", "Bob");
+////      tweeter.follow("Daisy", "Bob");
+////
+////      tweeter.tweet("Alex", "AlexHello");
+////      tweeter.tweet("Bob", "BobHello");
+////      tweeter.tweet("Alex", "Hello");
+////      tweeter.tweet("Bob", "  Hello  ");
+////
+////      tweeter.block("Bob", "Carol");
+////      tweeter.tweet("Alex", "AlexMessage");
+////      tweeter.tweet("Bob", "BobMessage");
+////      tweeter.follow("X", "A");
+////      tweeter.follow("Y", "A");
+////      tweeter.follow("Z", "A");
+////      tweeter.tweet("A", "A Tweet");
+////
+////      tweeter.unblock("Bob", "Carol");
+////      tweeter.tweet("Bob", "Bob After Unblocking");
+////
+////      tweeter.tweet("  A  ", "Hello");
+////
+////      tweeter.tweet(" A ", "hello");
+////
+////      stats.resetStatsAndSystem();
+////      tweeter.follow("Carol", "Alex");
+////      tweeter.follow("Carol", "Bob");
+////      tweeter.follow("Daisy", "Bob");
+////
+////      tweeter.tweet("Alex", "AlexHello");
+////      tweeter.tweet("Bob", "BobHello");
+////      tweeter.tweet("Alex", "Hello");
+////      tweeter.tweet("Bob", "  Hello  ");
+////
+////      tweeter.block("Carol", "Bob");
+////      tweeter.tweet("Alex", "AlexMessage");
+////      tweeter.tweet("Bob", "BobMessage");
+////      tweeter.follow("X", "A");
+////      tweeter.follow("Y", "A");
+////      tweeter.follow("Z", "A");
+////      tweeter.tweet("A", "A Tweet");
+////
+////      tweeter.unblock("Carol", "Bob");
+////      tweeter.tweet("Bob", "Bob After Unblocking");
+////
+////      tweeter.tweet("  A  ", "Hello");
+////
+////      tweeter.tweet(" A ", "hello");
+////      tweeter.block("Carol", "Bob");
 
-      tweeter.tweet("Alex", "AlexHello");
-      tweeter.tweet("Bob", "BobHello");
-      tweeter.tweet("Alex", "Hello");
-      tweeter.tweet("Bob", "  Hello  ");
 
-      tweeter.block("Bob", "Carol");
-      tweeter.tweet("Alex", "AlexMessage");
-      tweeter.tweet("Bob", "BobMessage");
-      tweeter.follow("X", "A");
-      tweeter.follow("Y", "A");
-      tweeter.follow("Z", "A");
-      tweeter.tweet("A", "A Tweet");
 
-      tweeter.unblock("Bob", "Carol");
-      tweeter.tweet("Bob", "Bob After Unblocking");
+    // 2nd set of cases.
+//      tweeter.follow("Bob", "Alice");
+//      tweeter.follow("Carl", "Alice");
+//
+//      tweeter.follow("Drake", "Alice");
+//
+//
+//
+//      tweeter.block("Alice", "Bob");
+//
+//      tweeter.tweet("Alice", "hello");
 
-      tweeter.tweet("  A  ", "Hello");
 
-      tweeter.tweet(" A ", "hello");
 
-      stats.resetStatsAndSystem();
-      tweeter.follow("Carol", "Alex");
-      tweeter.follow("Carol", "Bob");
-      tweeter.follow("Daisy", "Bob");
 
-      tweeter.tweet("Alex", "AlexHello");
-      tweeter.tweet("Bob", "BobHello");
-      tweeter.tweet("Alex", "Hello");
-      tweeter.tweet("Bob", "  Hello  ");
 
-      tweeter.block("Carol", "Bob");
-      tweeter.tweet("Alex", "AlexMessage");
-      tweeter.tweet("Bob", "BobMessage");
-      tweeter.follow("X", "A");
-      tweeter.follow("Y", "A");
-      tweeter.follow("Z", "A");
-      tweeter.tweet("A", "A Tweet");
 
-      tweeter.unblock("Carol", "Bob");
-      tweeter.tweet("Bob", "Bob After Unblocking");
 
-      tweeter.tweet("  A  ", "Hello");
+    // User trying to block himself case.
+    //tweeter.block("alice", "alice");
 
-      tweeter.tweet(" A ", "hello");
-      tweeter.block("Carol", "Bob");
+
+
+
+
+
+
+
+    // 3rd set of cases
+//      tweeter.follow("Bob", "Alice");
+//
+//      tweeter.follow("Bob", "Carl");
+//
+//
+//
+//
+//
+//      tweeter.block("Alice", "Bob");
+//
+//      tweeter.block("Carl", "Bob");
+//
+//
+//
+//      tweeter.follow("Cathy", "Alice");
+//
+//      tweeter.follow("Cathy", "Carl");
+//
+//      tweeter.follow("Cathy", "Dan");
+//
+//
+//
+//      tweeter.block("Alice", "Cathy");
+//
+//      tweeter.block("Carl", "Cathy");
+//
+//      tweeter.block("Dan", "Cathy");
+//
+//
+//
+//      tweeter.unblock("Dan", "Cathy");
     } catch (Exception e) {
       e.printStackTrace();
     }

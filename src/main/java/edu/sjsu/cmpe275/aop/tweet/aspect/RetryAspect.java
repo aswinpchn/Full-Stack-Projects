@@ -51,7 +51,7 @@ public class RetryAspect {
       } catch(UnsupportedOperationException e) {
         e.printStackTrace();
         System.out.printf("Finished the execution of the method %s in RetryAspect with UnsupportedOperationException\n", joinPoint.getSignature().getName());
-        throw new UnsupportedEncodingException();
+        throw new UnsupportedOperationException();
       } catch (Throwable throwable) {
         System.out.println("---------------- Came into throwable -------------------");
         throwable.printStackTrace();

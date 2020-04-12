@@ -33,7 +33,7 @@ public interface TweetService {
    * This method allows a user to block a follower or a potential follower so that
    * subsequently tweets will not be shared with the latter, unless unblocked. The
    * same block operation can be repeated.
-   *
+   * ---------------- Here the user blocks the followee
    * @throws IllegalArgumentException      if the user or follower is null or
    *                                       empty.
    * @throws UnsupportedOperationException if attempts to block himself.
@@ -44,7 +44,7 @@ public interface TweetService {
 
   /**
    * This method undoes previous blocks.
-   *
+   * ---------------- Here the user un-blocks the follower
    * @throws IOException                   if there is a network failure
    * @throws IllegalArgumentException      if the follower or followee is null or
    *                                       empty.

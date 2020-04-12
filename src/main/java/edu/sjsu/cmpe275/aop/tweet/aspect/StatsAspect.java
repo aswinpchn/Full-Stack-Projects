@@ -94,8 +94,8 @@ public class StatsAspect {
   public void blockAdvice(JoinPoint joinPoint) {
     System.out.printf("After the execution of the method %s in StatsAspect\n", joinPoint.getSignature().getName());
 
-    String userToBeBlocked = joinPoint.getArgs()[0].toString();
-    String userWhoIsBlocking = joinPoint.getArgs()[1].toString();
+    String userToBeBlocked = joinPoint.getArgs()[1].toString();
+    String userWhoIsBlocking = joinPoint.getArgs()[0].toString();
 
     if(stats.block.get(userWhoIsBlocking) == null) {
       Set<String> temp = new HashSet<String>();
@@ -110,8 +110,8 @@ public class StatsAspect {
   public void unblockAdvice(JoinPoint joinPoint) {
     System.out.printf("After the execution of the method %s in StatsAspect\n", joinPoint.getSignature().getName());
 
-    String userToBeBlocked = joinPoint.getArgs()[0].toString();
-    String userWhoIsBlocking = joinPoint.getArgs()[1].toString();
+    String userToBeBlocked = joinPoint.getArgs()[1].toString();
+    String userWhoIsBlocking = joinPoint.getArgs()[0].toString();
 
     if(stats.block.get(userWhoIsBlocking) == null) {
 
