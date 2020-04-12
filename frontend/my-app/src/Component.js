@@ -163,7 +163,8 @@ class Home extends Component {
 				{result}
 				<footer class="footer mt-auto py-3">
 					<div class="container">
-						<span class="text-muted">By Aswin Prasad. (014344512) for CMPE 285 HW. Using ReactJs, Flask(Python)</span>
+						<span class="text-muted">By Aswin Prasad. (014344512) for CMPE 285 HW. Using ReactJs, Flask(Python) </span>
+						<a href="https://github.com/aswinpchn/Stock-Profit-Calculator">Github Link</a>
 					</div>
 				</footer>
 			</div>

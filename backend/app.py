@@ -5,12 +5,12 @@ from flask_cors import CORS
   
 # creating a Flask app 
 app = Flask(__name__) 
-CORS(app)
+CORS(app) # Let the api acces for frontends.
   
 # enter valid values for the data, you will get results.
 @app.route('/stats/', methods = ['POST'])
 def getStatistics():
-    print(request.json)
+    print(request.json) # If you send json body, you have to access like this only # https://stackoverflow.com/questions/10434599/get-the-data-received-in-a-flask-request
     body = request.get_json()
     
     initialPrice = body.get("initialPrice")
