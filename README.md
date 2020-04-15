@@ -13,3 +13,4 @@
 1. pm2 start npm -- start (This is for frontend)
 2. pm2 start app.py --interpreter python3   (This is for python)
 3. Pre-req is to have pm2 insalled. (Some commands are, pm2 logs id ------------ pm2 list ---------------  pm2 kill id)
+
