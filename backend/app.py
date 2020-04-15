@@ -2,12 +2,22 @@
 # import necessary libraries and functions 
 from flask import Flask, jsonify, request 
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
+import requests
+import datetime
+import pytz
   
 # creating a Flask app 
 app = Flask(__name__) 
 CORS(app) # Let the api acces for frontends.
+load_dotenv()
+
+
+API_KEY = os.getenv("API_KEY")
+print(API_KEY)
   
-# enter valid values for the data, you will get results.
+# enter valid values for the data, you will get results. this is for  calculator API
 @app.route('/stats/', methods = ['POST'])
 def getStatistics():
     print(request.json) # If you send json body, you have to access like this only # https://stackoverflow.com/questions/10434599/get-the-data-received-in-a-flask-request
@@ -56,6 +66,42 @@ def getStatistics():
         'status': 'success'
     })
 
+@app.route('/test/<companyName>', methods = ['GET'])
+def hometest(companyName):
+    r = requests.get('https://cloud.iexapis.com/stable/stock/' + companyName + '/quote?token=' +  API_KEY)
+    
+    print(r.status_code)
+
+    if(r.status_code == 200):
+        time = datetime.datetime.now(tz=pytz.utc).strftime("%Y-%m-%d %H:%M:%S") + ' : UTC'
+        fullName = r.json().get("companyName")
+        latestStockPrice = r.json().get("iexRealtimePrice")
+        
+        valueChanges = round((r.json().get("change")), 2) # valueChanges will be a float
+        if(valueChanges > 0):
+            valueChanges = '+' + str(valueChanges) + ' $'
+        else:
+            valueChanges = str(valueChanges) + ' $'
+
+        percentageChanges = round((r.json().get("changePercent"))*100, 2)
+        if(percentageChanges > 0):
+            percentageChanges = '+' + str(percentageChanges) + ' %'
+        else:
+            percentageChanges = str(percentageChanges) + ' %'
+        
+        return jsonify({
+            'time' : time, 
+            'fullName' : fullName,
+            'latestStockPrice' : latestStockPrice, 
+            'valueChanges' : valueChanges, 
+            'percentageChanges' : percentageChanges
+        })
+    elif(r.status_code == 404):
+        return "Aborted with 404", 404
+    else:
+        return "Internal Server Error", 500
+
+    return r.json()
 
 # on the terminal type: curl http://127.0.0.1:5000/ 
 # returns hello world when we use GET. 
@@ -69,6 +115,7 @@ def home():
   
 # driver function 
 if __name__ == '__main__': 
-    app.run(host='0.0.0.0')
+    #app.run(debug=True)
+    app.run(host='0.0.0.0', port = 5001)
 
 # app.run(debug= True) # This has to be used while debugging. The other while deployment.
