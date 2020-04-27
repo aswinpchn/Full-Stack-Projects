@@ -31,6 +31,7 @@ target/
 # ignore idea settings folder
 .idea/
 
-lab2-mini-gaming/src/main/resources/application.properties
+# DB credentials
+lab2-mini-gaming/src/main/resources/application.properties 
 
 .DS_Store
