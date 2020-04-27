@@ -27,6 +27,8 @@ target/
 
 # Ignore eclipse settings folder
 .settings/
+.classpath
+.project
 
 # ignore idea settings folder
 .idea/
