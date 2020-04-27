@@ -19,6 +19,8 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "express-sessions": "^1.0.6",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "acorn": "7.1.1",
+    "minimist": "1.2.5"
   }
 }
