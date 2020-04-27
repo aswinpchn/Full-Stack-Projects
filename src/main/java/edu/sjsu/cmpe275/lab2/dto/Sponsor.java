@@ -23,6 +23,18 @@ public class Sponsor {
 	@Embedded
 	private Address address;
 
+	/*
+		Note: When ever we are creating relationships, its upon us to decide if it is going to be uni-directional or bi-directional relationship.
+		https://thoughts-on-java.org/ultimate-guide-association-mappings-jpa-hibernate/#manyToMany
+
+
+		https://www.baeldung.com/jpa-joincolumn-vs-mappedby
+		We know that the Player side is the owning side of this relationship.
+		The value of mappedBy is name of the attribute in the owning side, In our case it is <private Sponsor sponsor;>, "sponsor"
+
+
+		Then we have typical JSONIgnore to avoid cycles.
+	 */
 	@JsonIgnoreProperties({"sponsor", "opponents"})
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "sponsor")
 	private List<Player> beneficiaries;
