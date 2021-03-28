@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: black;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Add padding to containers */
+    .container {
+      padding: 16px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    input,
+    input[type=text],
+    input[type=password],
+    input[type=email] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Overwrite default styles of hr */
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+
+    /* Set a style for the submit button */
+    .registerbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+      opacity: 1;
+    }
+
+    /* Add a blue text color to links */
+    a {
+      color: dodgerblue;
+    }
+
+    /* Set a grey background color and center the text of the "sign in" section */
+    .signin {
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    function strengthChecker(value) {
+      score = 0
+      if (value.search(/[A-Z]/) != -1) {
+        score++;
+      }
+      if (value.search(/[a-z]/) != -1) {
+        score++;
+      }
+      if (value.search(/[0-9]/) != -1) {
+        score++;
+      }
+      if (value.search(/[@#$&*]/) != -1) {
+        score++;
+      }
+      if ($('#userID').val() && $('#userID').val() != value) {
+        score++
+      }
+      $('#progessBar').val(score * 100 / 6);
+    }
+
+    function processSubmit() {
+      if ($('#psw').val() != $('#psw-repeat').val()) {
+        alert('Password not matching');
+      } else if ($('#email').val() != $('#email-repeat').val()) {
+        alert('Email not matching');
+      } else {
+        localStorage.setItem("userID", $('#userID').val());
+        localStorage.setItem("password", $('#psw').val());
+        localStorage.setItem("email", $('#email').val());
+        localStorage.setItem("security question 1", $('#sq1').val());
+        localStorage.setItem("security answer 1", $('#sa1').val());
+        localStorage.setItem("security question 2", $('#sq2').val());
+        localStorage.setItem("security answer 2", $('#sa2').val());
+        localStorage.setItem("Phone", $('#phone').val());
+        localStorage.setItem("Address", $('#address').val());
+        alert('Local storage values set, you can check in the dev console!');
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+  <form action="javascript:void(0);" onsubmit="processSubmit()">
+    <div class="container">
+      <h1>Register</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+
+      <label for="userID"><b>User-ID</b></label>
+      <input type="text" placeholder="Enter User ID" name="userID" id="userID" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="psw" oninput='strengthChecker(this.value)'
+        required>
+
+      <div class="tooltip">Password requirements
+        <span class="tooltiptext">
+          1 Upper case letter
+          <br>
+          1 Lower case letter
+          <br>
+          1 Number
+          <br>
+          1 Special character (@, #, $, &, *)
+          <br>
+          Password should not be same as user id
+        </span>
+      </div>
+
+      <label for="file">Password strength</label>
+      <progress id="progessBar" value="0" max="100"> </progress>
+
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+
+      <label for="email"><b>Email</b></label>
+      <input type="email" placeholder="Enter Email" name="email" id="email" required>
+
+      <label for="email-repeat"><b>Email</b></label>
+      <input type="email" placeholder="Repeat Email" name="email-repeat" id="email-repeat" required>
+
+      <label for="sq1"><b>Security question-1</b></label>
+      <input list="sq1-options" name="sq1" id="sq1" required>
+      <datalist id="sq1-options">
+        <option value="Sum of 2 + 3=">
+        <option value="Sum of 100 + 200=">
+        <option value="Product of 2 * 3=">
+        <option value="Capital of India?">
+        <option value="Capital of USA?">
+      </datalist>
+
+      <label for="sa1"><b>Answer 1</b></label>
+      <input type="text" placeholder="Enter Answer 1" name="sa1" id="sa1" required>
+
+      <label for="sq2"><b>Security question-2</b></label>
+      <input list="sq2-options" name="sq2" id="sq2" required>
+      <datalist id="sq2-options">
+        <option value="Sum of 2 + 3=">
+        <option value="Sum of 100 + 200=">
+        <option value="Product of 2 * 3=">
+        <option value="Capital of India?">
+        <option value="Capital of USA?">
+      </datalist>
+
+      <label for="sa2"><b>Answer 2</b></label>
+      <input type="text" placeholder="Enter Answer 2" name="sa2" id="sa2" required>
+
+      <label for="phone">Enter your phone number:</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+
+      <label for="w3review">Address:</label>
+
+      <textarea id="address" name="address" rows="4" cols="50" required>
+
+    </textarea>
+
+      <button type="submit" class="registerbtn">Register</button>
+    </div>
+  </form>
+
+</body>
+
+</html>
