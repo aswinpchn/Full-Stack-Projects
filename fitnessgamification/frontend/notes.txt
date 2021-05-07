@@ -1,0 +1,2 @@
+Cookie in front-end or back-end
+https://stackoverflow.com/questions/26082511/which-way-to-create-cookie-by-frontend-or-backend
