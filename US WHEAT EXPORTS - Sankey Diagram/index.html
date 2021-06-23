@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['sankey']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'From');
+        data.addColumn('string', 'To');
+        data.addColumn('number', 'Weight');
+        data.addRows([
+          [ 'USA', 'Japan', 3104120.07 ],
+          [ 'USA', 'Mexico', 2357475.44 ],
+          [ 'USA', 'Egypt', 2278194.63 ],
+          [ 'USA', 'Nigeria', 1898158.3 ],
+          [ 'USA', 'Philippines', 1881650.19 ],
+          [ 'USA', 'South korea', 1397857.7 ],
+          [ 'USA', 'China, Taiwan', 969799.22 ],
+          [ 'USA', 'China, Mainland', 959340.3 ],
+          [ 'USA', 'Iran', 733321.33 ],
+          [ 'USA', 'Unspecified area', 715198.84 ]
+        ]);
+
+        // Sets chart options.
+        var options = {
+          width: 600,
+        };
+
+        // Instantiates and draws our chart, passing in some options.
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <h1 style="text-align: center;">USA Wheat exports</h1>
+    <div id="sankey_basic" style="border: 1px solid black;margin-left: 20%;margin-top: 10%;width: 60vw; height: 60vh;"></div>
+    <h4 style="text-align: center;">Note: Top 10 countires only. Value in Tons</h4>
+    <div style="text-align: center;">
+      <a href="http://www.fao.org/faostat/en/#data/TM/visualize" >Data source - Food and agrictulre organization</a>
+    </div>
+  </body>
+</html>

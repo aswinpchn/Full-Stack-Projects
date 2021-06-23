@@ -1,0 +1,14 @@
+#navbar {
+  background-color: darkblue;
+  color: white;
+}
+
+.content div {
+  padding: 5px;
+}
+
+label {
+  display: inline-block;
+  width:100px;
+  text-align: right;
+}
